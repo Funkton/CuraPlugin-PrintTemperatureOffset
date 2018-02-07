@@ -1,0 +1,7 @@
+{
+    "name": "Print Temperature Offset",
+    "author": "Pheneeny",
+    "version": "1.0.0",
+    "description": "Adjust the material temperature by an offset value. Useful for raising the extrusion temperature for faster speed or larger nozzle without changing the default material temperature",
+    "api": 4
+}
