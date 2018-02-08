@@ -72,7 +72,7 @@ class PrintTemperatureOffset(Extension):
             Logger.log("w", "Scene has no gcode to process")
             return
 
-        m1049 = re.compile("(M10[4|9]\s.*S)(\d*\.?\d*)(.*)")
+        m104orM109 = re.compile("(M10[4|9]\s.*S)(\d*\.?\d*)(.*)")
 
         for plate_id in gcode_dict:
             gcode_list = gcode_dict[plate_id]
@@ -81,15 +81,17 @@ class PrintTemperatureOffset(Extension):
                 continue
 
             if ";Ajdusted temp by" not in gcode_list[1]:
-                lines = gcode_list[1].split("\n")
+                for layer_num, gcodes in enumerate(gcode_list):
+                    lines = gcodes.split("\n")
 
-
-                for (line_nr, line) in enumerate(lines):
-                    result = m1049.fullmatch(line);
-                    if result:
-                        adjusted = offset_temp + float(result.group(2))
-                        lines[line_nr] = result.group(1) + str(adjusted) + result.group(3) + " ;Ajdusted temp by {}".format(offset_temp)
-                gcode_list[1] = "\n".join(lines)
+                    for (line_nr, line) in enumerate(lines):
+                        result = m104orM109.fullmatch(line);
+                        if result:
+                            existing_temp = float(result.group(2))
+                            if existing_temp != 0:
+                                adjusted = offset_temp + existing_temp
+                                lines[line_nr] = result.group(1) + str(adjusted) + result.group(3) + " ;Ajdusted temp by {}".format(offset_temp)
+                    gcode_list[layer_num] = "\n".join(lines)
                 gcode_dict[plate_id] = gcode_list
             else:
                 Logger.log("d", "Plate %s has already been processed", plate_id)
