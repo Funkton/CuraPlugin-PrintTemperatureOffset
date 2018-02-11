@@ -80,7 +80,7 @@ class PrintTemperatureOffset(Extension):
                 Logger.log("w", "Plate %s does not contain any layers", plate_id)
                 continue
 
-            if ";Ajdusted temp by" not in gcode_list[1]:
+            if ";Adjusted temp by" not in gcode_list[1]:
                 for layer_num, gcodes in enumerate(gcode_list):
                     lines = gcodes.split("\n")
 
@@ -90,7 +90,7 @@ class PrintTemperatureOffset(Extension):
                             existing_temp = float(result.group(2))
                             if existing_temp != 0:
                                 adjusted = offset_temp + existing_temp
-                                lines[line_nr] = result.group(1) + str(adjusted) + result.group(3) + " ;Ajdusted temp by {}".format(offset_temp)
+                                lines[line_nr] = result.group(1) + str(adjusted) + result.group(3) + " ;Adjusted temp by {}".format(offset_temp)
                     gcode_list[layer_num] = "\n".join(lines)
                 gcode_dict[plate_id] = gcode_list
             else:
