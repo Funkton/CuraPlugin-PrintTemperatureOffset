@@ -9,6 +9,10 @@ M104 and M109 commands that set the temperature to 0 (turning the heater off) ar
 
 ###Examples
 Print temperature set to 215, Printing Temperature Offset set to 10: Modified temperature will be 225
+
 Print temperature set to 215, Printing Temperature Offset set to -10: Modified temperature will be 205
+
+###Why?
+My default material temperatures work great on my 0.4 and 0.6 nozzles, but I was seeing layer de-lamination with my 1.0 nozzle. With this plugin, I can offset the printing temperature on my 1.0mm nozzle profile and print successfully with any filament.
 
 
