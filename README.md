@@ -12,6 +12,12 @@ Print temperature set to 215, Printing Temperature Offset set to 10: Modified te
 
 Print temperature set to 215, Printing Temperature Offset set to -10: Modified temperature will be 205
 
+### Supported Cura Versions
+This has been tested on Cura 3.2.0.
+
+### Installation
+Download [PrintTemperatureOffset.curaplugin](https://github.com/Pheneeny/CuraPlugin-PrintTemperatureOffset/releases/download/v1.0.0/PrintTemperatureOffset.curaplugin), drag and drop the .curaplugin file into Cura, then restart Cura for the plugin to be loaded. You will need to enable the plugin and all of the plugin's settings.
+
 ### Why?
 My default material temperatures work great on my 0.4 and 0.6 nozzles, but I was seeing layer de-lamination with my 1.0 nozzle. With this plugin, I can offset the printing temperature on my 1.0mm nozzle profile and print successfully with any filament.
 
